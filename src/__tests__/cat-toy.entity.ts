@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
+import {Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, VirtualColumn} from 'typeorm'
 import { CatEntity } from './cat.entity'
 import { SizeEmbed } from './size.embed'
 import { ToyShopEntity } from './toy-shop.entity'
@@ -24,4 +24,10 @@ export class CatToyEntity {
 
     @CreateDateColumn()
     createdAt: string
+
+    @VirtualColumn({
+        type: 'boolean',
+        query: (entity) => `SELECT ${entity}.name = 'Mouse'`,
+    })
+    isMouse: boolean;
 }

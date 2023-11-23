@@ -23,4 +23,9 @@ export class CatHomeEntity {
         query: (alias) => `SELECT CAST(COUNT(*) AS INT)  FROM "cat" WHERE "cat"."homeId" = ${alias}.id`,
     })
     countCat: number
+
+    @VirtualColumn({
+        query: (alias) => `SELECT ${alias}.name = 'Box'`,
+    })
+    isBox: boolean
 }
